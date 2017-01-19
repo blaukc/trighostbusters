@@ -7,6 +7,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="javascript/main.js"></script>
         <script src="javascript/animation.js"></script>
+        <script src="javascript/button.js"></script>
+        <script src="javascript/setKeys.js"></script>
     </head>
     <body>
         <div id="menu">
@@ -17,12 +19,27 @@
                 <a class="button">Credits</a>
             </div>
         </div>
-        <div class="playerBox" id="player1box">
-            <div id="player1"></div>
+        <div id="container1">
+            <div class="playerBox" id="player1box">
+                <div id="player1"></div>
+            </div>
+            <a class="playerButton1" id="p1b1"><div class="buttonImg" id="p1b1Img"></div></a>
+            <a class="playerButton1" id="p1b2"><div class="buttonImg" id="p1b2Img"></div></a>
+            <a class="playerButton1" id="p1b3"><div class="buttonImg" id="p1b3Img"></div></a>
+            <a class="playerButton1" id="p1b4"><div class="buttonImg" id="p1b4Img"></div></a>
         </div>
-        <div class="playerBox" id="player2box">
-            <div id="player2"></div>
+        <div id="container2">
+            <div class="playerBox" id="player2box">
+                <div id="player2"></div>
+            </div>
+            <a class="playerButton2" id="p2b4"><div class="buttonImg" id="p2b1Img"></div></a>
+            <a class="playerButton2" id="p2b3"><div class="buttonImg" id="p2b2Img"></div></a>
+            <a class="playerButton2" id="p2b2"><div class="buttonImg" id="p2b3Img"></div></a>
+            <a class="playerButton2" id="p2b1"><div class="buttonImg" id="p2b4Img"></div></a>
         </div>
+        <div id="translucentBG"></div>
+        <div id="howToPlay"></div>
+        <div id="setKeys"><a><img id="skip" src="img/Arrow/skip.png"></a></div>
         <!-- its not cool to snoop about -->
     </body>
 </html>
