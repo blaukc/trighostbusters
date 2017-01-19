@@ -3,9 +3,17 @@
 
 $(document).ready(function () {
     "use strict";
-    $(".playerBox").hide();
+    $("#container1").hide();
+    $("#container2").hide();
+    $("#translucentBG").hide();
+    $("#setKeys").hide();
+    $("#howToPlay").hide();
     $("#play").click(function () {
         $("#menu").hide();
-        $(".playerBox").show();
+        $("#setKeys").show();
+        $("#skip").hide();
+        $("#translucentBG").show();
+        $("#container1").show();
+        $("#container2").show();
     });
 });
