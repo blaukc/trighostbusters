@@ -10,10 +10,8 @@ $(document).ready(function () {
     $("#howToPlay").hide();
     $("#play").click(function () {
         $("#menu").hide();
-        $("#setKeys").show();
-        $("#skip").hide();
+        $("#howToPlay").show();
+        $("#arrowLeft").hide();
         $("#translucentBG").show();
-        $("#container1").show();
-        $("#container2").show();
     });
 });
