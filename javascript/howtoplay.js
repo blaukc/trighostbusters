@@ -35,5 +35,6 @@ $(document).ready(function () {
         $("#setKeys").show();
         $("#container1").show();
         $("#container2").show();
+        $("#setKeysP2").hide();
     });
 });
