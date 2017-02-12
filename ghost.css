@@ -1,0 +1,28 @@
+.p1gc {
+    position: absolute;
+    right: 0;
+    height: 20%;
+    width: 13%;
+}
+
+.p1g1, .p1g2, .p1g3, .p1g4, .p1g5, .p1g6, .p1g7, .p1g8, .p1g9, .p1g10, .p1g11, .p1g12, .p1g13 {
+    margin-top: 40%;    
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+}
+
+.p2gc {
+    position: absolute;
+    height: 20%;
+    width: 13%;
+}
+
+.p2g1, .p2g2, .p2g3, .p2g4, .p2g5, .p2g6, .p2g7, .p2g8, .p2g9, .p2g10, .p2g11, .p2g12, .p2g13 {
+    margin-top: 40%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+}
