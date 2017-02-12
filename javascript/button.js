@@ -1,8 +1,8 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert, startLevel, aliveP1, killP1G, aliveP2, killP2G*/
 
-var p1b1, p1b2, p1b3, p1b4, p2b1, p2b2, p2b3, p2b4;
-var keySetStart = false;
+var p1b1, p1b2, p1b3, p1b4, p2b1, p2b2, p2b3, p2b4, p1Killed = 0, p2Killed = 0;
+var keySetStart = false, wrongKey = true, p1UpdateScore, p2UpdateScore, pointsPerGhost, gameStart = 0;
 var countdownNumber = 3, countdownTimer = 0, i = 0, j = 0, dInterval = 0;
 
 function press(player, number) {
@@ -103,65 +103,121 @@ $(document).ready(function () {
             press(1, 1);
             for (i = aliveP1.length - 1; i > 0; i -= 2) {
                 if (aliveP1[i] === 1) {
+                    p1Killed += 1;
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p1UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p1b2) {
             press(1, 2);
             for (i = aliveP1.length - 1; i > 0; i -= 2) {
                 if (aliveP1[i] === 2) {
+                    p1Killed += 1;
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p1UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p1b3) {
             press(1, 3);
             for (i = aliveP1.length - 1; i > 0; i -= 2) {
                 if (aliveP1[i] === 3) {
+                    p1Killed += 1;
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p1UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p1b4) {
             press(1, 4);
             for (i = aliveP1.length - 1; i > 0; i -= 2) {
                 if (aliveP1[i] === 4) {
+                    p1Killed += 1;
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p1UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p2b1) {
             press(2, 1);
             for (j = aliveP2.length - 1; j > 0; j -= 2) {
                 if (aliveP2[j] === 1) {
+                    p2Killed += 1;
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p2UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p2b2) {
             press(2, 2);
             for (j = aliveP2.length - 1; j > 0; j -= 2) {
                 if (aliveP2[j] === 2) {
+                    p2Killed += 1;
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p2UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p2b3) {
             press(2, 3);
             for (j = aliveP2.length - 1; j > 0; j -= 2) {
                 if (aliveP2[j] === 3) {
+                    p2Killed += 1;
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p2UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         } else if (e.which === p2b4) {
             press(2, 4);
             for (j = aliveP2.length - 1; j > 0; j -= 2) {
                 if (aliveP2[j] === 4) {
+                    p2Killed += 1;
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
+                    wrongKey = false;
                 }
+            }
+            if (wrongKey && gameStart === 1) {
+                p2UpdateScore(-(pointsPerGhost));
+            } else {
+                wrongKey = true;
             }
         }
     });
