@@ -247,6 +247,6 @@ function startLevel() {
     });
     gameStart = 1;
     levelText("Level 1");
-    p1Level = setInterval(p1CreateGhost.bind(null, 1, 1, 8, 0, 5000), 1000);
-    p2Level = setInterval(p2CreateGhost.bind(null, 1, 1, 8, 0, 5000), 1000);
+    p1Level = setInterval(p1CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
+    p2Level = setInterval(p2CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
 }
