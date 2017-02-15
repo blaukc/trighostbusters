@@ -1,11 +1,11 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert, p1DrawGhost, p2DrawGhost, p1CreateGhost, p2CreateGhost, nextLevelAfterLesson, startLevel, countdown, end*/
 
-var n = 0, m = 0, o = 0, p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray, p2LoseLifeArray, gameStart, countdownTimer,
+var n = 0, m = 0, o = 0, p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray, p2LoseLifeArray, gameStart, countdownTimer, difficultyD,
     p1Answer = 0, p1Question = 0, p2Answer = 0, p2Question = 0, levelComplete = 0, currentGhost = 1, currentLevel = 1,
     aliveP1 = [], aliveP2 = [],
     p1ToBeKilled, p1Killed = 0, p2ToBeKilled, p2Killed = 0, p1Score = 0, p2Score = 0, pointsPerGhost = 10,
-    levelDetails = ["ghost1", 1, 8, 5000, 0, 10, "ghost2", 1, 10, 4000, 6, 20, "ghost3", 2, 8, 5000, 0, 40, "ghost4", 2, 10, 4000, 9, 60, "ghost5", 3, 8, 3000, 0, 90, "ghost6", 3, 10, 2000, 12, 120, "ghost7", 4, 8, 5000, 0, 160, "ghost8", 4, 12, 4000, 9, 200, "ghost9", 5, 8, 7000, 0, 250, "ghost10", 5, 12, 5000, 12, 300, "ghost11", 6, 1, 1000, 0, 1000, "ghost12", 6, 1, 1000, 4, 2000, "ghost13", 6, 1, 1000, 8, 3000];
+    levelDetails = ["ghost1", 1, 8, 7500, 0, 10, "ghost2", 1, 10, 6000, 6, 20, "ghost3", 2, 8, 7500, 0, 40, "ghost4", 2, 10, 6000, 9, 60, "ghost5", 3, 8, 6000, 0, 90, "ghost6", 3, 10, 6000, 12, 120, "ghost7", 4, 8, 7500, 0, 160, "ghost8", 4, 12, 6000, 9, 200, "ghost9", 5, 8, 9000, 0, 250, "ghost10", 5, 12, 6000, 12, 300, "ghost11", 6, 1, 1000, 0, 1000, "ghost12", 6, 1, 1000, 4, 2000, "ghost13", 6, 1, 1000, 8, 3000];
 
 function random(x, y) {
     'use strict';
@@ -94,11 +94,11 @@ function nextLevelAfterLesson(ghost) {
             }
             setTimeout(setPPG.bind(null, levelDetails[o + 5]), 1000);
             if (currentGhost < 11) {
-                p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
-                p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
+                p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), levelDetails[o + 3] / difficultyD);
+                p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]) / difficultyD, levelDetails[o + 3] / difficultyD);
             } else {
-                setTimeout(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), 5000);
-                setTimeout(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), 5000);
+                setTimeout(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), 5000);
+                setTimeout(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), 5000);
             }
         }
     }
@@ -307,8 +307,8 @@ function startLevel() {
     });
     gameStart = 1;
     levelText("Level 1");
-    p1Level = setInterval(p1CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
-    p2Level = setInterval(p2CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
+    p1Level = setInterval(p1CreateGhost.bind(null, 1, 1, 8, 0, 7500 / difficultyD), 7500 / difficultyD);
+    p2Level = setInterval(p2CreateGhost.bind(null, 1, 1, 8, 0, 7500 / difficultyD), 7500 / difficultyD);
 }
 
 $(document).ready(function () {

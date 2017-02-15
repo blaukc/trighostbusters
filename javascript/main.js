@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 
-var keySetStart;
+var keySetStart, difficulty = 1, difficultyD = 1;
 
 $(document).ready(function () {
     "use strict";
@@ -17,6 +17,7 @@ $(document).ready(function () {
     $("#end").hide();
     $("#arrowLeft").hide();
     $("#credit").hide();
+    $("#dArrowLeft").hide();
     $("#play").click(function () {
         $("#menu").hide();
         keySetStart = true;
@@ -46,5 +47,35 @@ $(document).ready(function () {
         $("#menu").show();
         $("#credit").hide();
         $("#translucentBG").hide();
+    });
+    $("#dArrowRight").click(function () {
+        if (difficulty === 1) {
+            $("#difficulty").attr("src", "img/howtoplay/2.png");
+            difficulty = 2;
+            difficultyD = 1.5;
+            $("#difficulty").text(difficulty);
+            $("#dArrowLeft").show();
+        } else if (difficulty === 2) {
+            $("#difficulty").attr("src", "img/howtoplay/3.png");
+            difficulty = 3;
+            difficultyD = 2;
+            $("#difficulty").text(difficulty);
+            $("#dArrowRight").hide();
+        }
+    });
+    $("#dArrowLeft").click(function () {
+        if (difficulty === 3) {
+            $("#difficulty").attr("src", "img/howtoplay/2.png");
+            difficulty = 2;
+            difficultyD = 1.5;
+            $("#difficulty").text(difficulty);
+            $("#dArrowRight").show();
+        } else if (difficulty === 2) {
+            $("#difficulty").attr("src", "img/howtoplay/1.png");
+            difficulty = 1;
+            difficultyD = 1;
+            $("#difficulty").text(difficulty);
+            $("#dArrowLeft").hide();
+        }
     });
 });

@@ -5,7 +5,7 @@ var aPlayer1 = 1, aPlayer2 = 1, p, q, r, s, y, z,
     aP1G1 = 1, aP1G2 = 1, aP1G3 = 1, aP1G4 = 1, aP1G5 = 1, aP1G6 = 1, aP1G7 = 1, aP1G8 = 1, aP1G9 = 1, aP1G10 = 1, aP1G11 = 1,  aP1G12 = 1,  aP1G13 = 1,
     aP2G1 = 1, aP2G2 = 1, aP2G3 = 1, aP2G4 = 1, aP2G5 = 1, aP2G6 = 1, aP2G7 = 1, aP2G8 = 1, aP2G9 = 1, aP2G10 = 1, aP2G11 = 1,  aP2G12 = 1,  aP2G13 = 1,
     p1HeartCounter = 3, p2HeartCounter = 3, stopLoseLife = false, pointsPerGhost = 10,
-    p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray = [], p2LoseLifeArray = [], p1Killed, p2Killed, currentGhost, n, m, p1UpdateScore, p2UpdateScore, levelDetails, $ghost, $ghostContainer, $question, randHeight, p1Time, p1Elapsed, p2Time, p2Elapsed;
+    p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray = [], p2LoseLifeArray = [], p1Killed, p2Killed, currentGhost, n, m, p1UpdateScore, p2UpdateScore, levelDetails, $ghost, $ghostContainer, $question, randHeight, p1Time, p1Elapsed, p2Time, p2Elapsed, difficultyD;
 
 
 function setP1ArrayZero() {
@@ -30,7 +30,7 @@ function p1RestartGame(ghost, level, number, qBefore, time) {
     setTimeout(setP1ArrayZero, 1000);
     for (y = 0; y < levelDetails.length; y += 1) {
         if (levelDetails[y] === "ghost" + currentGhost) {
-            p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[y + 1], levelDetails[y + 2], levelDetails[y + 4], levelDetails[y + 3]), levelDetails[y + 3]);
+            p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[y + 1], levelDetails[y + 2], levelDetails[y + 4], levelDetails[y + 3] / difficultyD), levelDetails[y + 3] / difficultyD);
         }
     }
 }
@@ -49,7 +49,7 @@ function p2RestartGame(ghost, level, number, qBefore, time) {
     setTimeout(setP2ArrayZero, 1000);
     for (z = 0; z < levelDetails.length; z += 1) {
         if (levelDetails[z] === "ghost" + currentGhost) {
-            p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[z + 1], levelDetails[z + 2], levelDetails[z + 4], levelDetails[z + 3]), levelDetails[z + 3]);
+            p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[z + 1], levelDetails[z + 2], levelDetails[z + 4], levelDetails[z + 3] / difficultyD), levelDetails[z + 3] / difficultyD);
         }
     }
 }
@@ -149,7 +149,7 @@ function p1DrawGhost(gContainerId, gContainerClass, gId, gClass, ghost, level, n
         $("#" + gContainerId).append($ghost);
         $("#" + gContainerId).append($question);
         $("#" + gContainerId).css("margin-top", randHeight + "%");
-        $("#" + gContainerId).animate({right: '80%', top: 30 - randHeight + "%"}, 10000, p1LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
+        $("#" + gContainerId).animate({right: '80%', top: 30 - randHeight + "%"}, 10000 / difficultyD, p1LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
         //$("#" + gContainerId).animate({right: '80%', top: '35%'}, 20000);
     } else {
         $ghostContainer = $("<div>", {id: gContainerId, "class": "p1fgc"});
@@ -173,7 +173,7 @@ function p2DrawGhost(gContainerId, gContainerClass, gId, gClass, ghost, level, n
         $("#" + gContainerId).append($ghost);
         $("#" + gContainerId).append($question);
         $("#" + gContainerId).css("margin-top", randHeight + "%");
-        $("#" + gContainerId).animate({left: '80%', top: 30 - randHeight + "%"}, 10000, p2LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
+        $("#" + gContainerId).animate({left: '80%', top: 30 - randHeight + "%"}, 10000 / difficultyD, p2LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
     //$("#" + gContainerId).animate({right: '80%', top: '35%'}, 20000);
     } else {
         $ghostContainer = $("<div>", {id: gContainerId, "class": "p2fgc"});
