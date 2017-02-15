@@ -46,7 +46,8 @@ body {
     width: 90%;
     margin-top: 20px;
     margin-left: 5%;
-    background-color: floralwhite;
+    background-image: url(img/spooky%20bg.png);
+    background-size: cover;
     position: absolute;
 }
 
@@ -374,6 +375,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
+    color: azure;
 }
 
 #translucentBG {
