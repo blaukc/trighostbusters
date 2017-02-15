@@ -1,7 +1,7 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, startLevel, aliveP1, killP1G, aliveP2, killP2G*/
+/*global $, jQuery, alert, firstLesson, aliveP1, killP1G, aliveP2, killP2G, startLevel*/
 
-var p1b1, p1b2, p1b3, p1b4, p2b1, p2b2, p2b3, p2b4, p1Killed = 0, p2Killed = 0;
+var p1b1, p1b2, p1b3, p1b4, p2b1, p2b2, p2b3, p2b4, p1Killed = 0, p2Killed = 0, currentGhost, p1Elapsed, p1Time, p2Elapsed, p2Time;
 var keySetStart = false, wrongKey = true, p1UpdateScore, p2UpdateScore, pointsPerGhost, gameStart = 0;
 var countdownNumber = 3, countdownTimer = 0, i = 0, j = 0, dInterval = 0;
 
@@ -95,7 +95,7 @@ $(document).ready(function () {
         $("#scoreboard").show();
         $("#number").show();
         $(".buttonImg").children("p").remove();
-        countdownTimer = setInterval(countdown, 1000);
+        firstLesson();
     });
     
     $(document).on("keypress", function (e) {
@@ -107,10 +107,18 @@ $(document).ready(function () {
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p1Elapsed = new Date().getTime() - p1Time;
+                        p1UpdateScore(Math.floor(10000000 / p1Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p1UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p1UpdateScore(-(pointsPerGhost));
+                } else {
+                    p1UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -122,10 +130,18 @@ $(document).ready(function () {
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p1Elapsed = new Date().getTime() - p1Time;
+                        p1UpdateScore(Math.floor(10000000 / p1Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p1UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p1UpdateScore(-(pointsPerGhost));
+                } else {
+                    p1UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -137,10 +153,18 @@ $(document).ready(function () {
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p1Elapsed = new Date().getTime() - p1Time;
+                        p1UpdateScore(Math.floor(10000000 / p1Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p1UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p1UpdateScore(-(pointsPerGhost));
+                } else {
+                    p1UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -152,10 +176,18 @@ $(document).ready(function () {
                     killP1G(aliveP1[i - 1]);
                     aliveP1.splice(i - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p1Elapsed = new Date().getTime() - p1Time;
+                        p1UpdateScore(Math.floor(10000000 / p1Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p1UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p1UpdateScore(-(pointsPerGhost));
+                } else {
+                    p1UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -167,10 +199,18 @@ $(document).ready(function () {
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p2Elapsed = new Date().getTime() - p2Time;
+                        p2UpdateScore(Math.floor(10000000 / p2Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p2UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p2UpdateScore(-(pointsPerGhost));
+                } else {
+                    p2UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -182,10 +222,18 @@ $(document).ready(function () {
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p2Elapsed = new Date().getTime() - p2Time;
+                        p2UpdateScore(Math.floor(10000000 / p2Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p2UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p2UpdateScore(-(pointsPerGhost));
+                } else {
+                    p2UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -197,10 +245,18 @@ $(document).ready(function () {
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p2Elapsed = new Date().getTime() - p2Time;
+                        p2UpdateScore(Math.floor(10000000 / p2Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p2UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p2UpdateScore(-(pointsPerGhost));
+                } else {
+                    p2UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }
@@ -212,10 +268,18 @@ $(document).ready(function () {
                     killP2G(aliveP2[j - 1]);
                     aliveP2.splice(j - 1, 2);
                     wrongKey = false;
+                    if (currentGhost > 10) {
+                        p2Elapsed = new Date().getTime() - p2Time;
+                        p2UpdateScore(Math.floor(10000000 / p2Elapsed));
+                    }
                 }
             }
             if (wrongKey && gameStart === 1) {
-                p2UpdateScore(-(pointsPerGhost));
+                if (currentGhost < 11) {
+                    p2UpdateScore(-(pointsPerGhost));
+                } else {
+                    p2UpdateScore(-5000);
+                }
             } else {
                 wrongKey = true;
             }

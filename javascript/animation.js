@@ -1,11 +1,11 @@
 /*jslint browser: true, */
-/*global $, jQuery, alert, aliveP1, aliveP2, dInterval, p1CreateGhost, p2CreateGhost, p1LevelComplete, p2LevelComplete*/
+/*global $, jQuery, alert, console, aliveP1, aliveP2, dInterval, p1CreateGhost, p2CreateGhost, p1LevelComplete, p2LevelComplete*/
 
 var aPlayer1 = 1, aPlayer2 = 1, p, q, r, s, y, z,
     aP1G1 = 1, aP1G2 = 1, aP1G3 = 1, aP1G4 = 1, aP1G5 = 1, aP1G6 = 1, aP1G7 = 1, aP1G8 = 1, aP1G9 = 1, aP1G10 = 1, aP1G11 = 1,  aP1G12 = 1,  aP1G13 = 1,
     aP2G1 = 1, aP2G2 = 1, aP2G3 = 1, aP2G4 = 1, aP2G5 = 1, aP2G6 = 1, aP2G7 = 1, aP2G8 = 1, aP2G9 = 1, aP2G10 = 1, aP2G11 = 1,  aP2G12 = 1,  aP2G13 = 1,
     p1HeartCounter = 3, p2HeartCounter = 3, stopLoseLife = false, pointsPerGhost = 10,
-    p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray = [], p2LoseLifeArray = [], p1Killed, p2Killed, currentGhost, n, m, p1UpdateScore, p2UpdateScore, levelDetails;
+    p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray = [], p2LoseLifeArray = [], p1Killed, p2Killed, currentGhost, n, m, p1UpdateScore, p2UpdateScore, levelDetails, $ghost, $ghostContainer, $question, randHeight, p1Time, p1Elapsed, p2Time, p2Elapsed;
 
 
 function setP1ArrayZero() {
@@ -67,7 +67,7 @@ function p1LoseLifeF(gId, ghost, level, number, qBefore, time) {
             clearInterval(p1LoseLifeInterval);
             p1RestartGame(ghost, level, number, qBefore, time);
         }
-        p1UpdateScore(-(pointsPerGhost / 2));
+        p1UpdateScore(-pointsPerGhost);
         p1HeartCounter -= 1;
     }
 }
@@ -85,7 +85,7 @@ function p2LoseLifeF(gId, ghost, level, number, qBefore, time) {
             clearInterval(p2LoseLifeInterval);
             p2RestartGame(ghost, level, number, qBefore, time);
         }
-        p2UpdateScore(-(pointsPerGhost / 2));
+        p2UpdateScore(-pointsPerGhost);
         p2HeartCounter -= 1;
     }
 }
@@ -105,7 +105,7 @@ function p1LoseLife(gId, ghost, level, number, qBefore, time) {
                     clearInterval(p1LoseLifeInterval);
                     p1RestartGame(ghost, level, number, qBefore, time);
                 }
-                p1UpdateScore(-(pointsPerGhost / 2));
+                p1UpdateScore(-pointsPerGhost);
                 p1HeartCounter -= 1;
             }
             p1LoseLifeArray.push(gId);
@@ -129,7 +129,7 @@ function p2LoseLife(gId, ghost, level, number, qBefore, time) {
                     clearInterval(p2LoseLifeInterval);
                     p2RestartGame(ghost, level, number, qBefore, time);
                 }
-                p2UpdateScore(-(pointsPerGhost / 2));
+                p2UpdateScore(-pointsPerGhost);
                 p2HeartCounter -= 1;
             }
             p2LoseLifeArray.push(gId);
@@ -140,30 +140,50 @@ function p2LoseLife(gId, ghost, level, number, qBefore, time) {
 
 function p1DrawGhost(gContainerId, gContainerClass, gId, gClass, ghost, level, number, question, qBefore, time) {
     'use strict';
-    var $ghostContainer = $("<div>", {id: gContainerId, "class": gContainerClass}),
-        $ghost = $("<div>", {id: gId, "class": gClass}),
-        $question = $("<div>", {id: "question" + level + "-" + question}),
-        randHeight = Math.floor((Math.random() * 70) + 1);
-    $("#player1box").append($ghostContainer);
-    $("#" + gContainerId).append($ghost);
-    $("#" + gContainerId).append($question);
-    $("#" + gContainerId).css("margin-top", randHeight + "%");
-    $("#" + gContainerId).animate({right: '80%', top: 35 - randHeight + "%"}, 10000, p1LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
-    //$("#" + gContainerId).animate({right: '80%', top: '35%'}, 20000);
+    if (ghost < 11) {
+        $ghostContainer = $("<div>", {id: gContainerId, "class": gContainerClass});
+        $ghost = $("<div>", {id: gId, "class": gClass});
+        $question = $("<div>", {id: "question" + level + "-" + question});
+        randHeight = Math.floor((Math.random() * 60) + 1);
+        $("#player1box").append($ghostContainer);
+        $("#" + gContainerId).append($ghost);
+        $("#" + gContainerId).append($question);
+        $("#" + gContainerId).css("margin-top", randHeight + "%");
+        $("#" + gContainerId).animate({right: '80%', top: 30 - randHeight + "%"}, 10000, p1LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
+        //$("#" + gContainerId).animate({right: '80%', top: '35%'}, 20000);
+    } else {
+        $ghostContainer = $("<div>", {id: gContainerId, "class": "p1fgc"});
+        $ghost = $("<div>", {id: gId, "class": gClass});
+        $question = $("<div>", {id: "question" + level + "-" + question});
+        $("#player1box").append($ghostContainer);
+        $("#" + gContainerId).append($ghost);
+        $("#" + gContainerId).append($question);
+        p1Time = new Date().getTime();
+    }
 }
 
 function p2DrawGhost(gContainerId, gContainerClass, gId, gClass, ghost, level, number, question, qBefore, time) {
     'use strict';
-    var $ghostContainer = $("<div>", {id: gContainerId, "class": gContainerClass}),
-        $ghost = $("<div>", {id: gId, "class": gClass}),
-        $question = $("<div>", {id: "question" + level + "-" + question}),
-        randHeight = Math.floor((Math.random() * 70) + 1);
-    $("#player2box").append($ghostContainer);
-    $("#" + gContainerId).append($ghost);
-    $("#" + gContainerId).append($question);
-    $("#" + gContainerId).css("margin-top", randHeight + "%");
-    $("#" + gContainerId).animate({left: '80%', top: 35 - randHeight + "%"}, 10000, p2LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
+    if (ghost < 11) {
+        $ghostContainer = $("<div>", {id: gContainerId, "class": gContainerClass});
+        $ghost = $("<div>", {id: gId, "class": gClass});
+        $question = $("<div>", {id: "question" + level + "-" + question});
+        randHeight = Math.floor((Math.random() * 60) + 1);
+        $("#player2box").append($ghostContainer);
+        $("#" + gContainerId).append($ghost);
+        $("#" + gContainerId).append($question);
+        $("#" + gContainerId).css("margin-top", randHeight + "%");
+        $("#" + gContainerId).animate({left: '80%', top: 30 - randHeight + "%"}, 10000, p2LoseLife.bind(null, gId, ghost, level, number, qBefore, time));
     //$("#" + gContainerId).animate({right: '80%', top: '35%'}, 20000);
+    } else {
+        $ghostContainer = $("<div>", {id: gContainerId, "class": "p2fgc"});
+        $ghost = $("<div>", {id: gId, "class": gClass});
+        $question = $("<div>", {id: "question" + level + "-" + question});
+        $("#player2box").append($ghostContainer);
+        $("#" + gContainerId).append($ghost);
+        $("#" + gContainerId).append($question);
+        p2Time = new Date().getTime();
+    }
 }
 
 function drawPlayer1() {
@@ -182,49 +202,23 @@ function drawPlayer2() {
         aPlayer2 = 1;
     }
 }
-function drawP1G1() {
-    'use strict';
-    $(".p1g1").css("background-image", "url(img/ghostAnimation/player1/ghost1/ghost1%20idle" + aP1G1 + ".png)");
-    aP1G1 += 1;
-    if (aP1G1 === 6) {
-        aP1G1 = 1;
-    }
-}
-function drawP2G1() {
-    'use strict';
-    $(".p2g1").css("background-image", "url(img/ghostAnimation/player2/ghost1/ghost1%20idle" + aP2G1 + ".png)");
-    aP2G1 += 1;
-    if (aP2G1 === 6) {
-        aP2G1 = 1;
-    }
-}
-function drawP1G2() {
-    'use strict';
-    $(".p1g2").css("background-image", "url(img/ghostAnimation/player1/ghost2/ghost2%20idle" + aP1G2 + ".png)");
-    aP1G2 += 1;
-    if (aP1G2 === 4) {
-        aP1G2 = 1;
-    }
-}
-function drawP2G2() {
-    'use strict';
-    $(".p2g2").css("background-image", "url(img/ghostAnimation/player2/ghost2/ghost2%20idle" + aP2G2 + ".png)");
-    aP2G2 += 1;
-    if (aP2G2 === 4) {
-        aP2G2 = 1;
-    }
-}
 function killP1G(gId) {
     'use strict';
     $("#" + gId).parent().remove();
-    p1UpdateScore(pointsPerGhost);
+    if (currentGhost < 11) {
+        p1UpdateScore(pointsPerGhost);
+    }
     p1LevelComplete(currentGhost + 1);
+
 }
 function killP2G(gId) {
     'use strict';
     $("#" + gId).parent().remove();
-    p2UpdateScore(pointsPerGhost);
+    if (currentGhost < 11) {
+        p2UpdateScore(pointsPerGhost);
+    }
     p2LevelComplete(currentGhost + 1);
+
 }
 $(document).ready(function () {
     "use strict";

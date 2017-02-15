@@ -1,15 +1,34 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, p1DrawGhost, p2DrawGhost, p1CreateGhost, p2CreateGhost*/
+/*global $, jQuery, alert, p1DrawGhost, p2DrawGhost, p1CreateGhost, p2CreateGhost, nextLevelAfterLesson, startLevel, countdown, end*/
 
-var n = 0, m = 0, o = 0, p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray, p2LoseLifeArray, gameStart,
-    p1Answer = 0, p1Question = 0, p2Answer = 0, p2Question = 0, levelComplete = 0, currentGhost = 1,
+var n = 0, m = 0, o = 0, p1Level, p2Level, p1LoseLifeInterval, p2LoseLifeInterval, p1LoseLifeArray, p2LoseLifeArray, gameStart, countdownTimer,
+    p1Answer = 0, p1Question = 0, p2Answer = 0, p2Question = 0, levelComplete = 0, currentGhost = 1, currentLevel = 1,
     aliveP1 = [], aliveP2 = [],
     p1ToBeKilled, p1Killed = 0, p2ToBeKilled, p2Killed = 0, p1Score = 0, p2Score = 0, pointsPerGhost = 10,
-    levelDetails = ["ghost1", 1, 8, 5000, 0, 10, "ghost2", 1, 10, 4000, 6, 20, "ghost3", 2, 8, 4000, 0, 40, "ghost4", 2, 10, 3000, 9, 60, "ghost5", 3, 8, 2500, 0, 90, "ghost6", 3, 10, 2500, 12, 120, "ghost7", 4, 8, 4000, 0, 160, "ghost8", 4, 12, 3000, 9, 200, "ghost9", 5, 8, 5000, 0, 250, "ghost10", 5, 12, 4000, 12, 300, "ghost11", 6, 12, 1000, 0, 400, "ghost12", 6, 12, 1000, 0, 500, "ghost13", 6, 12, 1000, 0, 600];
+    levelDetails = ["ghost1", 1, 8, 5000, 0, 10, "ghost2", 1, 10, 4000, 6, 20, "ghost3", 2, 8, 5000, 0, 40, "ghost4", 2, 10, 4000, 9, 60, "ghost5", 3, 8, 3000, 0, 90, "ghost6", 3, 10, 2000, 12, 120, "ghost7", 4, 8, 5000, 0, 160, "ghost8", 4, 12, 4000, 9, 200, "ghost9", 5, 8, 7000, 0, 250, "ghost10", 5, 12, 5000, 12, 300, "ghost11", 6, 1, 1000, 0, 1000, "ghost12", 6, 1, 1000, 4, 2000, "ghost13", 6, 1, 1000, 8, 3000];
 
 function random(x, y) {
     'use strict';
     return Math.floor((Math.random() * y) + x);
+}
+
+function lesson(ghost) {
+    'use strict';
+    gameStart = 0;
+    $("#lesson").show();
+    $("#lessonImg").css("background-image", "url(img/lesson/" + currentLevel + ".png)");
+}
+
+function firstLesson() {
+    'use strict';
+    gameStart = 0;
+    $("#lesson").show();
+    $("#lessonImg").css("background-image", "url(img/lesson/" + currentLevel + ").png");
+    $("#lessonSkip").click(function () {
+        $("#lesson").hide();
+        gameStart = 1;
+        countdownTimer = setInterval(countdown, 1000);
+    });
 }
 
 function levelText(text) {
@@ -22,7 +41,6 @@ function levelText(text) {
 
 function nextLevel(ghost) {
     'use strict';
-    currentGhost += 1;
     aliveP1.length = 0;
     aliveP2.length = 0;
     p1LoseLifeArray.length = 0;
@@ -31,16 +49,57 @@ function nextLevel(ghost) {
     p2Killed = 0;
     clearInterval(p1LoseLifeInterval);
     clearInterval(p2LoseLifeInterval);
+    currentGhost += 1;
+    if (currentGhost === 3) {
+        currentLevel = 2;
+        lesson(currentGhost);
+    } else if (currentGhost === 5) {
+        currentLevel = 3;
+        lesson(currentGhost);
+    } else if (currentGhost === 7) {
+        currentLevel = 4;
+        lesson(currentGhost);
+    } else if (currentGhost === 9) {
+        currentLevel = 5;
+        lesson(currentGhost);
+    } else if (currentGhost === 11) {
+        currentLevel = 6;
+        lesson(currentGhost);
+    } else if (currentGhost === 14) {
+        setTimeout(end, 1000);
+    } else {
+        nextLevelAfterLesson(currentGhost);
+    }
+}
+
+function setPPG(points) {
+    'use strict';
+    pointsPerGhost = points;
+}
+
+function nextLevelAfterLesson(ghost) {
+    'use strict';
     for (o = 0; o < levelDetails.length; o += 1) {
-        if (levelDetails[o] === "ghost" + ghost) {
-            if (ghost % 2 !== 0 && ghost < 12) {
+        if (levelDetails[o] === "ghost" + currentGhost) {
+            if (currentGhost % 2 !== 0 && currentGhost < 10) {
                 levelText("Level " + levelDetails[o + 1]);
-            } else if (ghost % 2 === 0 && ghost < 11) {
+            } else if (currentGhost % 2 === 0 && currentGhost < 11) {
                 levelText("Boss Stage");
+            } else if (currentGhost === 11) {
+                levelText("Final Boss 1");
+            } else if (currentGhost === 12) {
+                levelText("Final Boss 2");
+            } else if (currentGhost === 13) {
+                levelText("Final Boss 3");
             }
-            pointsPerGhost = levelDetails[o + 5];
-            p1Level = setInterval(p1CreateGhost.bind(null, ghost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
-            p2Level = setInterval(p2CreateGhost.bind(null, ghost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
+            setTimeout(setPPG.bind(null, levelDetails[o + 5]), 1000);
+            if (currentGhost < 11) {
+                p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
+                p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), levelDetails[o + 3]);
+            } else {
+                setTimeout(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), 5000);
+                setTimeout(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]), 5000);
+            }
         }
     }
 }
@@ -166,13 +225,13 @@ function randomiseQuestion(answer, qBefore, level, ghost) {
         break;
     case 6:
         if (answer === 1) {
-            question = random(1 + qBefore, 2);
+            question = 1 + qBefore;
         } else if (answer === 2) {
-            question = random(3 + qBefore, 2);
+            question = 2 + qBefore;
         } else if (answer === 3) {
-            question = 5 + qBefore;
+            question = 3 + qBefore;
         } else if (answer === 4) {
-            question = 6 + qBefore;
+            question = 4 + qBefore;
         }
         break;
     }
@@ -241,12 +300,25 @@ function p2CreateGhost(ghost, level, number, qBefore, time) {
 
 function startLevel() {
     'use strict';
-    $("#player1box").click(function () {
-        alert(p1LoseLifeArray);
-        alert(aliveP1);
+    $("#lessonSkip").click(function () {
+        $("#lesson").hide();
+        gameStart = 1;
+        nextLevelAfterLesson(currentGhost);
     });
     gameStart = 1;
     levelText("Level 1");
     p1Level = setInterval(p1CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
     p2Level = setInterval(p2CreateGhost.bind(null, 1, 1, 8, 0, 5000), 5000);
 }
+
+$(document).ready(function () {
+    'use strict';
+    $("#player1box").click(function () {
+        alert(p1LoseLifeArray);
+        alert(aliveP1);
+    });
+    $("#player2box").click(function () {
+        alert(p2LoseLifeArray);
+        alert(aliveP2);
+    });
+});
