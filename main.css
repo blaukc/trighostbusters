@@ -50,6 +50,134 @@ body {
     position: absolute;
 }
 
+#credit {
+    -moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+    height: 90%;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 5%;
+    background-color: skyblue;
+    position: absolute;
+    z-index: 900;
+}
+
+.creditName {
+    text-align: center;
+}
+
+#creditDiv {
+    height: 20%;
+    width: 40%;
+    position:   absolute;
+    left: 30%;
+    top: 0;
+}
+
+#creditDiv2 {
+    height: 60%;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    overflow-y: scroll;
+}
+
+#creditDiv3 {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    left: 35%;
+}
+
+#howToPlayBtn {
+    font: bold 36px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+#play {
+    font: bold 55px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+#credits {
+    font: bold 55px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+#end {
+    -moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+    height: 90%;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 5%;
+    background-color: aliceblue;
+    position: absolute;
+    z-index: 999;
+}
+
+#winner {
+    position: relative;
+    font-size: 72px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#p1EScore {
+    position: absolute;
+    font-size: 72px;
+    top: 30%;
+    left: 10%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#p2EScore {
+    position: absolute;
+    font-size: 72px;
+    top: 30%;
+    right: 10%;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+#reload {
+    background-image: url(img/Arrow/restart.png);
+    background-size: cover;
+    position: absolute;
+    height: 20.5%;
+    width: 10%;
+    left: 45%;
+    top: 70%;
+    cursor:pointer;
+}
+
+#lesson {
+    -moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+    height: 90%;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 5%;
+    background-color: white;
+    position: absolute;
+    z-index: 999;
+}
+
+#lessonImg {
+    height: 100%;
+    width: 100%;
+    background-image: url(img/lesson/1.png);
+    background-size: cover;
+    position: absolute;
+}
+
 #p1HeartContainer {
     margin-top: 1%;
     margin-left: 1%;
@@ -172,6 +300,7 @@ body {
 #howToPlaySkip {
     left: 47.5%;
     top: 89%;
+    z-index: 23;
 }
 
 #setKeysSkip {
@@ -194,14 +323,17 @@ body {
 #arrowLeft {
     position: absolute;
     float: left;
-    margin-top: 21.5%;
+    margin-top: 15%;
     cursor: pointer;
+    z-index: 22;
 }
 
 #arrowRight {
+    position: relative;
     float: right;
-    margin-top: 21.5%;
+    margin-top: 15%;
     cursor: pointer;
+    z-index: 22;
 }
 
 #container1 {
@@ -258,16 +390,24 @@ body {
 	-webkit-border-radius:10px;
 	border-radius:10px;
 	border:1px solid #566963;
-    height: 95%;
+    height: 90%;
     width: 95%;
-    top: -97.5%;
+    top: -95%;
     margin-left: 2.5%;
     background-color: black;
     position: relative;
     overflow: hidden;
+    z-index: 20;
+}
+
+#howToPlayImg {
+    left: 0%;
+    src: url(img/howtoplay/1.png);
     background-image: url(img/howtoplay/1.jpg);
     background-size: cover;
-    z-index: 20;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 #setKeys {
@@ -304,7 +444,6 @@ body {
 	/*Step 3: Text Styles*/
 	color: rgba(0, 0, 0, 0.55);
 	text-align: center;
-	font: bold 55px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	
 	/*Step 4: Fancy CSS3 Styles*/
 	background: -webkit-linear-gradient(top, #34696f, #2f5f63);
