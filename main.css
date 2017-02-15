@@ -51,6 +51,28 @@ body {
     position: absolute;
 }
 
+#difficultyContainer {
+    height: 40%;
+    width: 40%;
+    margin-left: 30%;
+}
+
+#dArrowLeft {
+    position: absolute;
+    cursor: pointer;
+}
+
+#dArrowRight {
+    float: right;
+    cursor: pointer;
+}
+
+#difficulty {
+    position: absolute;
+    left: 49%;
+    top: 45%;
+}
+
 #credit {
     -moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -310,13 +332,13 @@ body {
 }
 
 #setKeysP1 {
-    color: aliceblue;
+    color: black;
     text-align: center;
     font-size: 36px;
 }
 
 #setKeysP2 {
-    color: aliceblue;
+    color: black;
     text-align: center;
     font-size: 36px;
 }
@@ -375,7 +397,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
-    color: azure;
+    color: azure;   
 }
 
 #translucentBG {
@@ -421,7 +443,7 @@ body {
     width: 60%;
     top: -80%;
     margin-left: 20%;
-    background-color: black;
+    background-color: aliceblue;
     position: relative;
     z-index: 11;
 }
