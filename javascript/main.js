@@ -23,6 +23,8 @@ $(document).ready(function () {
     $("#arrowLeft").hide();
     $("#credit").hide();
     $("#dArrowLeft").hide();
+    $("#howToPlayImg2").hide();
+    $("#howToPlayImg3").hide();
     $("#play").click(function () {
         $("#menu").hide();
         keySetStart = true;
