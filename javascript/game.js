@@ -95,7 +95,7 @@ function nextLevelAfterLesson(ghost) {
             setTimeout(setPPG.bind(null, levelDetails[o + 5]), 1000);
             if (currentGhost < 11) {
                 p1Level = setInterval(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), levelDetails[o + 3] / difficultyD);
-                p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3]) / difficultyD, levelDetails[o + 3] / difficultyD);
+                p2Level = setInterval(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), levelDetails[o + 3] / difficultyD);
             } else {
                 setTimeout(p1CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), 5000);
                 setTimeout(p2CreateGhost.bind(null, currentGhost, levelDetails[o + 1], levelDetails[o + 2], levelDetails[o + 4], levelDetails[o + 3] / difficultyD), 5000);
