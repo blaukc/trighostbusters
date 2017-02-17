@@ -560,11 +560,8 @@ body {
     z-index: 20;
 }
 
-#howToPlayImg {
+#howToPlayImg1, #howToPlayImg2, #howToPlayImg3 {
     left: 0%;
-    src: url(img/howtoplay/1.png);
-    background-image: url(img/howtoplay/1.jpg);
-    background-size: cover;
     height: 100%;
     width: 100%;
     position: absolute;
