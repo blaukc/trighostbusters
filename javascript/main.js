@@ -1,7 +1,12 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert*/
+/*global $, jQuery, alert, console, imagesLoaded*/
 
 var keySetStart, difficulty = 1, difficultyD = 1;
+
+$("body").imagesLoaded(function () {
+    'use strict';
+    $('body').addClass('loaded');
+});
 
 $(document).ready(function () {
     "use strict";
