@@ -187,6 +187,13 @@ body {
                 transition: all 0.3s 1s ease-out;
     }
 
+h3 {
+    margin-top: 30%;
+    color: aliceblue;
+    z-index: 2000;
+    text-align: center;
+}
+
 #difficultyContainer {
     height: 40%;
     width: 40%;
