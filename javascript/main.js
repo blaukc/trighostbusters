@@ -3,10 +3,11 @@
 
 var keySetStart, difficulty = 1, difficultyD = 1;
 
-$("body").imagesLoaded(function () {
+setTimeout(function () {
     'use strict';
     $('body').addClass('loaded');
-});
+    $('h1').css('color', '#222222');
+}, 10000);
 
 $(document).ready(function () {
     "use strict";
