@@ -1,13 +1,19 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert, console, imagesLoaded*/
 
-var keySetStart, difficulty = 1, difficultyD = 1, lTime = 10000;
+var keySetStart, difficulty = 1, difficultyD = 1, lTime = 10000, instructed = false;
 
 setTimeout(function () {
     'use strict';
     $('body').addClass('loaded');
-    $('h1').css('color', '#222222');
 }, lTime);
+
+function blinking() {
+    'use strict';
+    if (!instructed) {
+        $('#howToPlayBtnTxt').fadeOut(500).fadeIn(750, blinking);
+    }
+}
 
 $(document).ready(function () {
     "use strict";
@@ -26,6 +32,7 @@ $(document).ready(function () {
     $("#dArrowLeft").hide();
     $("#howToPlayImg2").hide();
     $("#howToPlayImg3").hide();
+    blinking();
     $("#play").click(function () {
         $("#menu").hide();
         keySetStart = true;
@@ -36,10 +43,15 @@ $(document).ready(function () {
         $("#setKeysP2").hide();
         $("#translucentBG").show();
     });
+    $("#loader-wrapper").click(function () {
+        $('body').addClass('loaded');
+    });
     $("#howToPlayBtn").click(function () {
         $("#menu").hide();
         $("#howToPlay").show();
         $("#translucentBG").show();
+        instructed = true;
+        $("#howToPlayBtnTxt").css("color", "#d3d3d3");
     });
     $("#howToPlaySkip").click(function () {
         $("#menu").show();
