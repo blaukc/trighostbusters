@@ -33,24 +33,28 @@ $(document).ready(function () {
             if (keysAlrSet.indexOf(keySet.which) === -1) {
                 if (keyToBeSet === 1) {
                     p1b1 = keySet.which;
+                    $("#setKeysP1").text("Player 1 select second key to be used for the game");
                     $("#p1b1").css("z-index", "9");
                     $("#p1b2").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
                     $("#p1b1Img").append("<p>" + String.fromCharCode(keySet.which) + "</p>");
                 } else if (keyToBeSet === 2) {
                     p1b2 = keySet.which;
+                    $("#setKeysP1").text("Player 1 select third key to be used for the game");
                     $("#p1b2").css("z-index", "9");
                     $("#p1b3").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
                     $("#p1b2Img").append("<p>" + String.fromCharCode(keySet.which) + "</p>");
                 } else if (keyToBeSet === 3) {
                     p1b3 = keySet.which;
+                    $("#setKeysP1").text("Player 1 select last key to be used for the game");
                     $("#p1b3").css("z-index", "9");
                     $("#p1b4").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
                     $("#p1b3Img").append("<p>" + String.fromCharCode(keySet.which) + "</p>");
                 } else if (keyToBeSet === 4) {
                     p1b4 = keySet.which;
+                    $("#setKeysP2").text("Player 2 select first key to be used for the game");
                     $("#p1b4").css("z-index", "9");
                     $("#p2b1").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
@@ -59,18 +63,21 @@ $(document).ready(function () {
                     $("#setKeysP1").hide();
                 } else if (keyToBeSet === 5) {
                     p2b1 = keySet.which;
+                    $("#setKeysP2").text("Player 2 select second key to be used for the game");
                     $("#p2b1").css("z-index", "9");
                     $("#p2b2").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
                     $("#p2b1Img").append("<p>" + String.fromCharCode(keySet.which) + "</p>");
                 } else if (keyToBeSet === 6) {
                     p2b2 = keySet.which;
+                    $("#setKeysP2").text("Player 2 select third key to be used for the game");
                     $("#p2b2").css("z-index", "9");
                     $("#p2b3").css("z-index", "12");
                     keysAlrSet.push(keySet.which);
                     $("#p2b2Img").append("<p>" + String.fromCharCode(keySet.which) + "</p>");
                 } else if (keyToBeSet === 7) {
                     p2b3 = keySet.which;
+                    $("#setKeysP2").text("Player 2 select last key to be used for the game");
                     $("#p2b3").css("z-index", "9");
                     $("#p2b4").css("z-index", "12");
                     keysAlrSet.push(keySet.which);

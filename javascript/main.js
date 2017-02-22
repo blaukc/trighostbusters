@@ -1,13 +1,13 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert, console, imagesLoaded*/
 
-var keySetStart, difficulty = 1, difficultyD = 1;
+var keySetStart, difficulty = 1, difficultyD = 1, lTime = 10000;
 
 setTimeout(function () {
     'use strict';
     $('body').addClass('loaded');
     $('h1').css('color', '#222222');
-}, 10000);
+}, lTime);
 
 $(document).ready(function () {
     "use strict";
