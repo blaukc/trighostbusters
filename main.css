@@ -195,6 +195,7 @@ h3 {
 }
 
 #difficultyContainer {
+    margin-top: -3%;
     height: 40%;
     width: 40%;
     margin-left: 30%;
@@ -213,7 +214,7 @@ h3 {
 #difficulty {
     position: absolute;
     left: 49%;
-    top: 45%;
+    top: 77%;
 }
 
 #credit {
@@ -477,13 +478,13 @@ h3 {
 #setKeysP1 {
     color: black;
     text-align: center;
-    font-size: 36px;
+    font-size: 60px;
 }
 
 #setKeysP2 {
     color: black;
     text-align: center;
-    font-size: 36px;
+    font-size: 60px;
 }
 
 #arrowLeft {
