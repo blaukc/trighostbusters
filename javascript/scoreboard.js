@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert, confirm, p1RestartGame, p2RestartGame*/
 
-var p1Score = 0, p2Score = 0, pointsPerGhost = 10, currentGhost;
+var p1Score = 0, p2Score = 0, pointsPerGhost = 10, currentGhost, difficulty;
 
 function p1UpdateScore(increase) {
     'use strict';
@@ -27,6 +27,16 @@ function p2UpdateScore(increase) {
 
 function end() {
     'use strict';
+    if (p1Score > 0) {
+        p1Score = p1Score * difficulty;
+    } else {
+        p1Score = p1Score / difficulty;
+    }
+    if (p2Score > 0) {
+        p2Score = p2Score * difficulty;
+    } else {
+        p2Score = p2Score / difficulty;
+    }
     $("#p1EScore").text(p1Score);
     $("#p2EScore").text(p2Score);
     if (p1Score > p2Score) {
