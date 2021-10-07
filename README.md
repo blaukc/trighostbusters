@@ -1,14 +1,12 @@
-HOW TO OPEN WEBSITE
+# trighostbusters
 
-Open Google Chrome
+a trigo game made for a school math project in 2017
 
-Press Ctrl + O
+buggy at best, broken at worst
 
-open index.html file 
+## How to play
 
-~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
-
-HOW TO PLAY GAME
+Click [here](https://blaukc.github.io/trighostbusters/) for website
 
 Player 1 will take the left side of the screen while Player 2 will 
 take the right side of the screen.
